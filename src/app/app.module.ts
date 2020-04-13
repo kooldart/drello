@@ -10,13 +10,16 @@ import { TaskComponent } from './task/task.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { CardDetailComponent } from './card-detail/card-detail.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ErrorsComponent,
-    TaskComponent
+    TaskComponent,
+    CardDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
 		DragDropModule,
 		MatToolbarModule,
-	MatButtonModule
+		MatButtonModule,
+		MatInputModule
 	],
   providers: [],
   bootstrap: [AppComponent]

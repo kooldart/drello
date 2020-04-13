@@ -1,10 +1,15 @@
 <div cdkDropListGroup>
-	<div class="container" *ngFor="let list of lists">
-	<h2 class="mat-h2">{{ list.title }}</h2>
-		<div *ngFor="let list of lists" cdkDropList [cdkDropListData]="list" (cdkDropListDropped)="dropList($event)" class="list">
-			<div cdkDrag class="list-item" *ngFor="let card of list.cards">
+<div class="container" *ngFor="let list of board.lists">
+		<h2 class="mat-h2">{{ list.title }}</h2>
+		<div class="list"
+			cdkDropList 
+			[cdkDropListData]="list.cards" 
+			(cdkDropListDropped)="dropList($event)">
+			<button (click)="cardClick()" mat-button cdkDrag class="list-item list-item-button" *ngFor="let card of list.cards">
 				{{ card.title }}
-			</div>
+			</button>
 		</div>
-		</div>
+	</div>
 </div>
+
+<app-card-detail></app-card-detail>

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Board } from '../models/board.models';
+import { List } from '../models/list.models';
+import { Card } from '../models/card.models';
+//import { Overlay, OverlayOrigin, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-task',
@@ -10,13 +14,22 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 
 export class TaskComponent {
 
-	lists : List[] = [
-		{ title : "TODO", cards : [ { title : "First Card" }, { title : "Second Card" } ] },
-		{ title : "Doing", cards : [ { title : "Third Card" }, { title : "Forth Card" } ] }
-		//{ title : "Done", cards : [ { title : "Sixth Card" }, { title : "Seventh Card" } ] }
-	];
+	board : Board = new Board("First Board", [
+		new List("TODO", [ new Card("First Card"), new Card("Second Card") ]),
+		new List("Doing", [ new Card("Third Card"), new Card("Forth Card") ]),
+		new List("Done", [ new Card("Sixth Card"), new Card("Seventh Card") ])
+		]
+	);
 
-  dropList(event : CdkDragDrop<List[]>) {
+	constructor(){
+		console.log(this.board.lists);
+	}
+
+	cardClick(){
+		console.log("Card clicked");
+	}
+
+  dropList(event : CdkDragDrop<Card[]>) {
     if (event.previousContainer === event.container) {
 			console.log("Same List, list = " + event);
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -29,13 +42,3 @@ export class TaskComponent {
     }
   }
 }
-
-class List {
-	title : string;
-	cards : Card[] = [];
-}
-
-class Card {
-	title : string;
-}
-

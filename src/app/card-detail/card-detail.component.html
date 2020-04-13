@@ -1,0 +1,13 @@
+<h1 class="mat-h1">{{ card.title }}</h1>
+
+<p>{{ card.description }}</p>
+
+<h3 *ngFor="let comm of card.comments">
+	{{ comm }}
+</h3>
+
+<mat-form-field color="background">
+	<mat-label>Add Comment</mat-label>
+	<input matInput placeHolder="Add Comment">
+</mat-form-field>
+	<button mat-button>Save</button>
